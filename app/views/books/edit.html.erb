@@ -1,22 +1,24 @@
 <h1>Editing Book</h1>
   <% if @book.errors.any? %>
-    <% if @book.errors.count == 1 %>
-    <%= @book.errors.count %>error prohibited this book from being saved:
-      <ul>
-        <% @book.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+    <div id="error_explanation">
+      <% if @book.errors.count == 1 %>
+        <h2><%= @book.errors.count %> error prohibited this book from being saved:</h2>
+        <ul>
+          <% @book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       <% else %>
-          <%= @book.errors.count %>errors prohibited this book from being saved:
-      <ul>
-        <% @book.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end  %>
+        <h2><%= @book.errors.count %> errors prohibited this book from being saved:</h2>
+        <ul>
+          <% @book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end  %>
+    </div>
   <% end %>
-<%= form_with model: @book,  method: :patch do |book| %>
+  <%= form_with model: @book,  method: :patch do |book| %>
     <div class="field">
       <%= book.label :title, "Title" %>
       <%= book.text_field :title %>
@@ -28,5 +30,5 @@
     <div class="action">
       <%= book.submit "Update Book" %>
     </div>
-<% end %>
-  <%= link_to "Show", "/books/#{@book.id}" %><span>｜</span><%= link_to "Back", "/books" %>
+  <% end %>
+  <%= link_to "Show", "/books/#{@book.id}" %><span> | </span><%= link_to "Back", "/books" %>
